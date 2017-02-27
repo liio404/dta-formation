@@ -1,2 +1,2 @@
 # dta-formation
-logiciel developpe pendant la focrmation
+logiciel developpe pendant la formation
