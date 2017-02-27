@@ -1,5 +1,6 @@
 package fr.pizzeria.console;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class PizzeriaAdminConsoleApp {
@@ -28,7 +29,7 @@ public class PizzeriaAdminConsoleApp {
 				break;
 				
 			case 2:
-				//AjouterPizza();
+				AjouterPizza(sc, tab);
 				break;
 				
 			case 3:
@@ -47,9 +48,6 @@ public class PizzeriaAdminConsoleApp {
 				break;
 			}
 		} while (action != 100);
-		
-		
-
 	}
 	
 	public static void Menu(){
@@ -73,5 +71,20 @@ public class PizzeriaAdminConsoleApp {
 		}
 	}
 	
-	
+	private static void AjouterPizza(Scanner sc, String[][] tab) {
+		String tmp[][] = Arrays.copyOf(tab, tab.length + 1);
+		//System.arraycopy(tab, 0, tmp, 0, tab.length +1);
+		
+		System.out.println("Veuillez saisir le code");
+		tmp[tab.length][0] = sc.nextLine();
+		
+		System.out.println("Veuillez saisir le nom (sans espace)");
+		tmp[tab.length][1] = sc.nextLine();
+		
+		System.out.println("Veuillez saisir le prix");
+		tmp[tab.length][2] = sc.nextLine();
+		
+		tab = Arrays.copyOf(tmp, tmp.length);
+		
+	}
 }
