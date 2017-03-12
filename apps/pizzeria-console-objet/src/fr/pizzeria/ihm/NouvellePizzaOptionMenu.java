@@ -7,7 +7,7 @@ import fr.pizzeria.model.Pizza;
 
 public class NouvellePizzaOptionMenu extends OptionMenu {
 	
-	public static final String LIBELLE = "Ajouter une nouvelle pizza";
+	private static final String LIBELLE = "Ajouter une nouvelle pizza";
 	
 	public NouvellePizzaOptionMenu(){
 		super(LIBELLE);

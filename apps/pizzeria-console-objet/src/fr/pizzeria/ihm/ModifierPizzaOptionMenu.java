@@ -6,7 +6,7 @@ import fr.pizzeria.dao.PizzaDaoImpl;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
-	public static final String LIBELLE = "Mettre à jour une pizza";
+	private static final String LIBELLE = "Mettre ï¿½ jour une pizza";
 	
 	public ModifierPizzaOptionMenu(){
 		super(LIBELLE);
