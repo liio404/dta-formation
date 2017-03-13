@@ -1,6 +1,8 @@
 package fr.pizzeria.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
@@ -9,36 +11,36 @@ import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IPizzaDao {
 	
-	Pizza pepe = new Pizza(0, "PEP", "Peperoni", 12.50D);
-	Pizza mar = new Pizza(1, "MAR", "Margherita", 14.00D);
-	Pizza frei = new Pizza(2, "REI", "La Reine", 11.50D);
-	Pizza fro = new Pizza(3, "FRO", "La 4 fromage", 12.00D);
-	Pizza can = new Pizza(4, "CAN", "La cannibale", 12.50D);
-	Pizza sav = new Pizza(5, "SAV", "La savoyarde", 13.00D);
-	Pizza ori = new Pizza(6, "ORI", "L'orientale", 13.50D);
-	Pizza ind = new Pizza(7, "IND", "L'indienne", 14.00D);
-	
-	Pizza[] pizzas = { pepe, mar, frei, fro, can, sav, ori, ind};
+	List<Pizza> pizzas;
 
 	public PizzaDaoImpl() {
 		super();
+		pizzas = new ArrayList<>();
+		pizzas.add(0, new Pizza(0, "PEP", "Peperoni", 12.50D));
+		pizzas.add(1, new Pizza(1, "MAR", "Margherita", 14.00D));
+		pizzas.add(2, new Pizza(2, "REI", "La Reine", 11.50D));
+		pizzas.add(3, new Pizza(3, "FRO", "La 4 fromage", 12.00D));
+		pizzas.add(4, new Pizza(4, "CAN", "La cannibale", 12.50D));
+		pizzas.add(5, new Pizza(5, "SAV", "La savoyarde", 13.00D));
+		pizzas.add(6, new Pizza(6, "ORI", "L'orientale", 13.50D));
+		pizzas.add(7, new Pizza(7, "IND", "L'indienne", 14.00D));
 	}
 
 	@Override
-	public Pizza[] findAllPizzas() {
+	public List<Pizza> findAllPizzas() {
 		return pizzas;
 	}
 
 	@Override
 	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException{
-		Arrays.copyOf(pizzas, pizzas.length +1);
-		pizzas[pizzas.length] = pizza;
+		//Arrays.copyOf(pizzas, pizzas.length +1);
+		pizzas.add(pizza);
 		return false;
 	}
 
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatPizzaException{
-		
+		// TODO :supprimer la pizza et ajouter la nouvelle !
 		for (Pizza p : pizzas) {
 			if (p.getCode().equals(codePizza)) {
 				p.setCode(pizza.getCode());
@@ -57,6 +59,8 @@ public class PizzaDaoImpl implements IPizzaDao {
 				// TODO : supprimer la pizza et redimensionner le tableau !
 			}
 		}
+		
+		
 		return false;
 	}
 
