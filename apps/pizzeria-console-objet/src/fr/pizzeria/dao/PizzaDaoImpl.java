@@ -40,12 +40,9 @@ public class PizzaDaoImpl implements IPizzaDao {
 
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatPizzaException{
-		// TODO :supprimer la pizza et ajouter la nouvelle !
-		for (Pizza p : pizzas) {
-			if (p.getCode().equals(codePizza)) {
-				p.setCode(pizza.getCode());
-				p.setNom(pizza.getNom());
-				p.setPrix(pizza.getPrix());
+		for (int i = 0; i < pizzas.size(); i++) {
+			if(pizzas.get(i).getCode().equals(codePizza)){
+				pizzas.set(i, pizza);
 			}
 		}
 		
@@ -54,12 +51,11 @@ public class PizzaDaoImpl implements IPizzaDao {
 
 	@Override
 	public boolean deletePizza(String codePizza) throws DeletePizzaException {
-		for (Pizza pizza : pizzas) {
-			if (pizza.getCode().equals(codePizza)) {
-				// TODO : supprimer la pizza et redimensionner le tableau !
+		for (int i = 0; i < pizzas.size(); i++) {
+			if(pizzas.get(i).getCode().equals(codePizza)){
+				pizzas.remove(i);
 			}
 		}
-		
 		
 		return false;
 	}

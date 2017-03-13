@@ -1,13 +1,16 @@
 package fr.pizzeria.ihm;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public abstract class Menu {
 	private String titre;
-	OptionMenu[] actions;
+	Map<Integer, OptionMenu> actions;
 	
 	public Menu(){
 		super();
+		this.actions = new HashMap<>();
 	}
 	
 	public Menu(String titre){
@@ -15,31 +18,34 @@ public abstract class Menu {
 		this.titre = titre;
 	}
 	
-	public Menu(String titre, OptionMenu[] actions){
+	public Menu(String titre, Map<Integer, OptionMenu> actions){
 		this(titre);
 		this.actions = actions;
 	}
 	
 	public void afficher(){
 		System.out.println(titre);
-		for (int i = 0; i < actions.length; i++) {
-			OptionMenu action = (OptionMenu) actions[i];
-			System.out.println(i + ". " + action.getLibelle());
-		}
+		actions.forEach((k,v) -> System.out.println(k + " - " + v ));
+		/*
+		 * for(Entry<Integer, OptionMenu> entry : actions.entrySet()){
+				System.out.println(entry.getKey() + ". " + entry.getValue().getLibelle());
+			}
+		 */
 	}
 	
 	public void executer(){
 		Scanner sc = new Scanner(System.in);
 		int choix = 0;
 		do {
-			afficher();
+			this.afficher();
 			choix = sc.nextInt();
-			// TODO : modifier laction quitter !
+			// TODO : modifier pour action quitter !
 			if(choix == 99) break;
-			actions[choix].excetute();
+			OptionMenu option = actions.get(choix);
+			option.excetute();
 			
 			
-		} while (choix != actions.length +1);
+		} while (choix != actions.size() +1);
 	}
 	
 	
