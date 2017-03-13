@@ -2,6 +2,9 @@ package fr.pizzeria.dao;
 
 import java.util.Arrays;
 
+import fr.pizzeria.exception.DeletePizzaException;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.UpdatPizzaException;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IPizzaDao {
@@ -27,14 +30,14 @@ public class PizzaDaoImpl implements IPizzaDao {
 	}
 
 	@Override
-	public boolean saveNewPizza(Pizza pizza) {
+	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException{
 		Arrays.copyOf(pizzas, pizzas.length +1);
 		pizzas[pizzas.length] = pizza;
 		return false;
 	}
 
 	@Override
-	public boolean updatePizza(String codePizza, Pizza pizza) {
+	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatPizzaException{
 		
 		for (Pizza p : pizzas) {
 			if (p.getCode().equals(codePizza)) {
@@ -48,7 +51,7 @@ public class PizzaDaoImpl implements IPizzaDao {
 	}
 
 	@Override
-	public boolean deletePizza(String codePizza) {
+	public boolean deletePizza(String codePizza) throws DeletePizzaException {
 		for (Pizza pizza : pizzas) {
 			if (pizza.getCode().equals(codePizza)) {
 				// TODO : supprimer la pizza et redimensionner le tableau !
