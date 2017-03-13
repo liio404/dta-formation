@@ -3,6 +3,8 @@ package fr.pizzeria.ihm;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.exception.UpdatPizzaException;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
@@ -30,7 +32,11 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 		System.out.println("Veuillez saisir le prix");
 		pizza.setPrix(sc.nextDouble());
 		
-		pizzaDao.updatePizza(codePizza, pizza);
+		try {
+			pizzaDao.updatePizza(codePizza, pizza);
+		} catch (StockageException e) {
+			new UpdatPizzaException("Impossible de modifier la pizza", e);
+		}
 		
 		
 		return super.excetute();
