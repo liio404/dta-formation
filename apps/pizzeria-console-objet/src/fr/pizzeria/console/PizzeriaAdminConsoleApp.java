@@ -1,15 +1,18 @@
 package fr.pizzeria.console;
 
+import fr.pizzeria.ihm.IhmTools;
 import fr.pizzeria.ihm.MenuPrincipale;
 
 public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
-		// TODO : généraliser le dao et le scanner dans une classe externe
-		// ou utiliser try with ressources
-		MenuPrincipale principale = new MenuPrincipale();
+		
+		IhmTools outils = new IhmTools();
+		
+		MenuPrincipale principale = new MenuPrincipale(outils);
 		principale.executer();
-		// TODO : debug car fonctionne pas !
+		
+		outils.close();
 	}
 
 }

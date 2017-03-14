@@ -14,18 +14,18 @@ public class SupprimerPizzaOptionMenu extends OptionMenu {
 	}
 
 	@Override
-	public boolean excetute() {
-		Scanner sc = new Scanner(System.in);
-		PizzaDaoImpl pizzaDao = new PizzaDaoImpl();
+	public boolean excetute(IhmTools tools) {
+		Scanner sc = tools.getSc();
+		PizzaDaoImpl pizzaDao = tools.getDao();
 		
-		System.out.println("Veuillez saisir le code de la pizza � supprimer");
+		System.out.println("Veuillez saisir le code de la pizza à supprimer");
 		try {
-			pizzaDao.deletePizza(sc.nextLine());
+			pizzaDao.deletePizza(sc.next());
 		} catch (StockageException e) {
 			new DeletePizzaException("Impossible de supprimer la pizza", e);
 		}
 		
-		return super.excetute();
+		return super.excetute(tools);
 	}
 	
 	

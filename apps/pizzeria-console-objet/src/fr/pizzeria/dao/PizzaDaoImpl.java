@@ -1,7 +1,6 @@
 package fr.pizzeria.dao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import fr.pizzeria.exception.DeletePizzaException;

@@ -1,5 +1,7 @@
 package fr.pizzeria.ihm;
 
+
+
 public abstract class OptionMenu {
 	private String libelle;
 	
@@ -20,7 +22,7 @@ public abstract class OptionMenu {
 		this.libelle = libelle;
 	}
 
-	public boolean excetute(){
+	public boolean excetute(IhmTools tools){
 		return false;
 	}
 

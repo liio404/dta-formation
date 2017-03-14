@@ -16,16 +16,16 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 	}
 
 	@Override
-	public boolean excetute() {
-		Scanner sc = new Scanner(System.in);
-		PizzaDaoImpl pizzaDao = new PizzaDaoImpl();
+	public boolean excetute(IhmTools tools) {
+		Scanner sc = tools.getSc();
+		PizzaDaoImpl pizzaDao = tools.getDao();
 		Pizza pizza = new Pizza();
 		
 		System.out.println("Veuillez saisir le code de la nouvelle pizza");
-		pizza.setCode(sc.nextLine());
+		pizza.setCode(sc.next());
 		
 		System.out.println("Veuillez saisir le nom de la pizza (sans espace) ");
-		pizza.setNom(sc.nextLine().trim());
+		pizza.setNom(sc.next().trim());
 		
 		System.out.println("Veuillez saisir le prix de la pizza");
 		pizza.setPrix(sc.nextDouble());
@@ -36,7 +36,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 			new SavePizzaException("Impossible d'ajouter la pizza", e);
 		}
 		
-		return super.excetute();
+		return super.excetute(tools);
 	}
 	
 }

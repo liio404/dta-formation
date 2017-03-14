@@ -12,14 +12,14 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 	}
 
 	@Override
-	public boolean excetute() {
-		PizzaDaoImpl pizzaDao = new PizzaDaoImpl();
+	public boolean excetute(IhmTools tools) {
+		PizzaDaoImpl pizzaDao = tools.getDao();
 		
 		for (Pizza pizza : pizzaDao.findAllPizzas()) {
-			pizza.toString();
+			System.out.println(pizza.toString());
 		}
 		
-		return super.excetute();
+		return false;
 	}
 	
 }

@@ -5,10 +5,10 @@ import java.util.TreeMap;
 
 public class MenuPrincipale extends Menu {
 	
-	public MenuPrincipale(){
-		super("***** Pizzeria Administration *****", actions);
+	public MenuPrincipale(IhmTools tool){
+		super(tool, "***** Pizzeria Administration *****", actions);
 	}
-	
+
 	private static Map<Integer, OptionMenu> actions = new TreeMap<>();
 	{
 		actions.put(1, new ListerPizzasOptionMenu());

@@ -8,26 +8,26 @@ import fr.pizzeria.exception.UpdatPizzaException;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaOptionMenu extends OptionMenu {
-	private static final String LIBELLE = "Mettre � jour une pizza";
+	private static final String LIBELLE = "Mettre à jour une pizza";
 	
 	public ModifierPizzaOptionMenu(){
 		super(LIBELLE);
 	}
 
 	@Override
-	public boolean excetute() {
-		Scanner sc = new Scanner(System.in);
-		PizzaDaoImpl pizzaDao = new PizzaDaoImpl();
+	public boolean excetute(IhmTools tools) {
+		Scanner sc = tools.getSc();
+		PizzaDaoImpl pizzaDao = tools.getDao();
 		
 		System.out.println("Veuillez saisir le code de la pizza a modifier");
-		String codePizza = sc.nextLine();
+		String codePizza = sc.next();
 		Pizza pizza = pizzaDao.findPizza(codePizza);
 		
 		System.out.println("Veuillez saisir le code");
-		pizza.setCode(sc.nextLine());
+		pizza.setCode(sc.next());
 		
 		System.out.println("Veuillez saisir le nom (sans espace)");
-		pizza.setNom(sc.nextLine().trim());
+		pizza.setNom(sc.next().trim());
 		
 		System.out.println("Veuillez saisir le prix");
 		pizza.setPrix(sc.nextDouble());
@@ -39,7 +39,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 		}
 		
 		
-		return super.excetute();
+		return super.excetute(tools);
 	}
 	
 	
