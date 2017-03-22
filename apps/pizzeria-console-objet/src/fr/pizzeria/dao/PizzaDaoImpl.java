@@ -32,6 +32,7 @@ public class PizzaDaoImpl implements IPizzaDao {
 
 	@Override
 	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException{
+		// TODO : Ajout des contrôles 
 		//Arrays.copyOf(pizzas, pizzas.length +1);
 		pizzas.add(pizza);
 		return false;
