@@ -15,6 +15,8 @@ public class MenuPrincipale extends Menu {
 		actions.put(2, new NouvellePizzaOptionMenu());
 		actions.put(3, new ModifierPizzaOptionMenu());
 		actions.put(4, new SupprimerPizzaOptionMenu());
+		actions.put(5, new ListerPizzasCategorieOptionMenu());
+		actions.put(6, new AfficherPizzaTarifEleveOptionMenu());
 		actions.put(99, new QuitterOptionMenu());
 	}
 }
