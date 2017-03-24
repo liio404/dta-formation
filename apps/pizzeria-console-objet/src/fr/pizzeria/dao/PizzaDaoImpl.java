@@ -32,18 +32,25 @@ public class PizzaDaoImpl implements IPizzaDao {
 
 	@Override
 	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException{
-		// TODO : Ajout des contrôles 
-		//Arrays.copyOf(pizzas, pizzas.length +1);
-		pizzas.add(pizza);
+		if(pizza.getCode().length() == 3){
+			//Arrays.copyOf(pizzas, pizzas.length +1);
+			pizzas.add(pizza);
+		}else{
+			throw new SavePizzaException("Le code de la pizza ne doit pas dépacer 3 caractère");
+		}
 		return false;
 	}
 
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatPizzaException{
-		for (int i = 0; i < pizzas.size(); i++) {
-			if(pizzas.get(i).getCode().equals(codePizza)){
-				pizzas.set(i, pizza);
+		if(codePizza.length() == 3 || pizza.getCode().length() == 3){
+			for (int i = 0; i < pizzas.size(); i++) {
+				if(pizzas.get(i).getCode().equals(codePizza)){
+					pizzas.set(i, pizza);
+				}
 			}
+		}else {
+			throw new UpdatPizzaException("Le code de la pizza ne doit pas dépacer 3 caractère");
 		}
 		
 		return false;
@@ -51,10 +58,14 @@ public class PizzaDaoImpl implements IPizzaDao {
 
 	@Override
 	public boolean deletePizza(String codePizza) throws DeletePizzaException {
-		for (int i = 0; i < pizzas.size(); i++) {
-			if(pizzas.get(i).getCode().equals(codePizza)){
-				pizzas.remove(i);
+		if(codePizza.length() == 3){
+			for (int i = 0; i < pizzas.size(); i++) {
+				if(pizzas.get(i).getCode().equals(codePizza)){
+					pizzas.remove(i);
+				}
 			}
+		}else{
+			throw new DeletePizzaException("Le code de la pizza est invalide");
 		}
 		
 		return false;
