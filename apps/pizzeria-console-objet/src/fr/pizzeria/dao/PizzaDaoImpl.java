@@ -6,6 +6,7 @@ import java.util.List;
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatPizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IPizzaDao {
@@ -15,14 +16,14 @@ public class PizzaDaoImpl implements IPizzaDao {
 	public PizzaDaoImpl() {
 		super();
 		pizzas = new ArrayList<>();
-		pizzas.add(0, new Pizza(0, "PEP", "Peperoni", 12.50D));
-		pizzas.add(1, new Pizza(1, "MAR", "Margherita", 14.00D));
-		pizzas.add(2, new Pizza(2, "REI", "La Reine", 11.50D));
-		pizzas.add(3, new Pizza(3, "FRO", "La 4 fromage", 12.00D));
-		pizzas.add(4, new Pizza(4, "CAN", "La cannibale", 12.50D));
-		pizzas.add(5, new Pizza(5, "SAV", "La savoyarde", 13.00D));
-		pizzas.add(6, new Pizza(6, "ORI", "L'orientale", 13.50D));
-		pizzas.add(7, new Pizza(7, "IND", "L'indienne", 14.00D));
+		pizzas.add(0, new Pizza(0, "PEP", "Peperoni", 12.50D, CategoriePizza.VIANDE));
+		pizzas.add(1, new Pizza(1, "MAR", "Margherita", 14.00D, CategoriePizza.VIANDE));
+		pizzas.add(2, new Pizza(2, "REI", "La Reine", 11.50D, CategoriePizza.VIANDE));
+		pizzas.add(3, new Pizza(3, "FRO", "La 4 fromage", 12.00D, CategoriePizza.SANS_VIANDE));
+		pizzas.add(4, new Pizza(4, "CAN", "La cannibale", 12.50D, CategoriePizza.VIANDE));
+		pizzas.add(5, new Pizza(5, "SAV", "La savoyarde", 13.00D, CategoriePizza.POISSON));
+		pizzas.add(6, new Pizza(6, "ORI", "L'orientale", 13.50D, CategoriePizza.VIANDE));
+		pizzas.add(7, new Pizza(7, "IND", "L'indienne", 14.00D, CategoriePizza.VIANDE));
 	}
 
 	@Override

@@ -1,11 +1,17 @@
 package fr.pizzeria.model;
 
+import java.lang.reflect.Field;
+
 public class Pizza {
 	
 	private int id;
+	@ToString(uppercase = true)
 	private String code;
+	@ToString
 	private String nom;
+	@ToString
 	private double prix;
+	@ToString
 	private CategoriePizza categorie;
 	private static int nbPizza;
 	
@@ -73,7 +79,21 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return this.code + " - " + this.nom + " (" + this.prix + ")" + " - " + this.categorie.getLibelle();
+		StringBuilder sb = new StringBuilder();
+		try {
+			for (Field champ : this.getClass().getDeclaredFields()) {
+				
+				ToString annotation = champ.getAnnotation(ToString.class);
+				if(annotation != null)
+					sb.append(champ.get(this).toString() + " ");
+				
+			}
+			
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		return sb.toString();
 	}
 	
 }
