@@ -5,6 +5,7 @@ import java.util.Scanner;
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class NouvellePizzaOptionMenu extends OptionMenu {
@@ -29,6 +30,10 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		
 		System.out.println("Veuillez saisir le prix de la pizza");
 		pizza.setPrix(sc.nextDouble());
+		
+		System.out.println("Choisissez la catégorie de la pizza");
+		System.out.println(CategoriePizza.values());
+		pizza.setCategorie(CategoriePizza.valueOf(sc.next()));
 		
 		try {
 			pizzaDao.saveNewPizza(pizza);

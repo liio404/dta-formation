@@ -19,6 +19,20 @@ import fr.pizzeria.model.Pizza;
 public class PizzaDaoImplFichier implements IPizzaDao {
 
 	@Override
+	public Pizza findPizza(String codePizza) {
+		Path path = Paths.get("data", codePizza + ".txt");
+		try {
+			String[] pizzaIteration = Files.readAllLines(path).get(0).split(";");
+			String code = path.getFileName().toFile().getName().replaceFirst(".txt", "");
+			return new Pizza(code, pizzaIteration[0], Double.parseDouble(pizzaIteration[1]), CategoriePizza.valueOf(pizzaIteration[2]));
+		} catch (IOException e) {
+			//throw new StockageException(e);
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
 	public List<Pizza> findAllPizzas() {
 		try (Stream<Path> files = Files.list(Paths.get("data"))){
 			return files.map(path ->{
