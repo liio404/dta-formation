@@ -2,28 +2,26 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.dao.PizzaDaoImplFichier;
 
 public class IhmTools {
 	
-	private Scanner sc;
-	private PizzaDaoImpl dao;
-	
-	public IhmTools(){
-		sc = new Scanner(System.in);
-		dao = new PizzaDaoImpl();
-	}
+	private final static Scanner SC = new Scanner(System.in);;
+	//private IPizzaDao dao = new PizzaDaoImpl();
+	private final static IPizzaDao DAO = new PizzaDaoImplFichier();
 
 	public Scanner getSc() {
-		return sc;
+		return SC;
 	}
 
-	public PizzaDaoImpl getDao() {
-		return dao;
+	public IPizzaDao getDao() {
+		return DAO;
 	}
 
 	public void close() {
-		sc.close();
+		SC.close();
 	}
 	
 }

@@ -32,6 +32,18 @@ public class Pizza {
 		this(id, code, nom, prix);
 		this.categorie = categorie;
 	}
+	
+	public Pizza(String code, String nom, Double prix){
+		this();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+	}
+	
+	public Pizza(String code, String nom, double prix, CategoriePizza categorie){
+		this(code, nom, prix);
+		this.categorie = categorie;
+	}
 
 	public int getId() {
 		return id;

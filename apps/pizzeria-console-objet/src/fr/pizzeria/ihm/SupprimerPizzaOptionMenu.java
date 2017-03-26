@@ -2,7 +2,7 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.StockageException;
 
@@ -16,7 +16,7 @@ public class SupprimerPizzaOptionMenu extends OptionMenu {
 	@Override
 	public boolean excetute(IhmTools tools) {
 		Scanner sc = tools.getSc();
-		PizzaDaoImpl pizzaDao = tools.getDao();
+		IPizzaDao pizzaDao = tools.getDao();
 		
 		System.out.println("Veuillez saisir le code de la pizza à supprimer");
 		try {

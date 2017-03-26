@@ -2,6 +2,7 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDaoImpl;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.exception.UpdatPizzaException;
@@ -17,11 +18,12 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 	@Override
 	public boolean excetute(IhmTools tools) {
 		Scanner sc = tools.getSc();
-		PizzaDaoImpl pizzaDao = tools.getDao();
+		IPizzaDao pizzaDao = tools.getDao();
 		
 		System.out.println("Veuillez saisir le code de la pizza a modifier");
 		String codePizza = sc.next();
-		Pizza pizza = pizzaDao.findPizza(codePizza);
+		//TODO : Ajouter la méthode findPizza dans IPizzaDao
+		Pizza pizza = ((PizzaDaoImpl) pizzaDao).findPizza(codePizza);
 		
 		System.out.println("Veuillez saisir le code");
 		pizza.setCode(sc.next());

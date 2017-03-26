@@ -2,7 +2,7 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
@@ -18,7 +18,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 	@Override
 	public boolean excetute(IhmTools tools) {
 		Scanner sc = tools.getSc();
-		PizzaDaoImpl pizzaDao = tools.getDao();
+		IPizzaDao pizzaDao = tools.getDao();
 		Pizza pizza = new Pizza();
 		
 		System.out.println("Veuillez saisir le code de la nouvelle pizza");

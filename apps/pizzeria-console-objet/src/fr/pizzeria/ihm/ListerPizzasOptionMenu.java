@@ -1,6 +1,6 @@
 package fr.pizzeria.ihm;
 
-import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
 public class ListerPizzasOptionMenu extends OptionMenu {
@@ -13,7 +13,7 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 
 	@Override
 	public boolean excetute(IhmTools tools) {
-		PizzaDaoImpl pizzaDao = tools.getDao();
+		IPizzaDao pizzaDao = tools.getDao();
 		
 		for (Pizza pizza : pizzaDao.findAllPizzas()) {
 			System.out.println(pizza.toString());
