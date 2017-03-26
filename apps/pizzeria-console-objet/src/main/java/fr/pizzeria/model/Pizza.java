@@ -1,6 +1,8 @@
 package fr.pizzeria.model;
 
 import java.lang.reflect.Field;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Pizza {
 	
@@ -107,5 +109,24 @@ public class Pizza {
 		
 		return sb.toString();
 	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(id).append(code).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null){
+			return false;
+		}else if(obj == this) {
+			return true;
+		}else if (obj.getClass() != getClass()) {
+			return false;
+		}
+		Pizza rhs = (Pizza)obj; 
+		return new EqualsBuilder().append(id, rhs.getId()).append(code, rhs.getCode()).isEquals();
+	}
+	
 	
 }
