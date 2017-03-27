@@ -15,6 +15,7 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <dao.impl>fr.pizzeria.dao.PizzaDaoImplFichier</dao.impl>
   </properties>
   
   <build>
@@ -24,6 +25,7 @@
   			<filtering>true</filtering>
   		</resource>
   	</resources>
+  	
   </build>
   
   <dependencies>
