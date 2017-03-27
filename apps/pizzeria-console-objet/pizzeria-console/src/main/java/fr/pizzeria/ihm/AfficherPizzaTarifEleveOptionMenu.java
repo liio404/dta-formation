@@ -13,7 +13,7 @@ public class AfficherPizzaTarifEleveOptionMenu extends OptionMenu {
 
 	@Override
 	public boolean excetute(IhmTools tools) {
-		tools.getDao().findAllPizzas().stream().max(Comparator.comparing(Pizza::getPrix)).ifPresent(p -> System.out.println(p.getNom() + " est la pizza la plus chère " + p.getPrix()+ "€ "));
+		tools.getDao().findAll().stream().max(Comparator.comparing(Pizza::getPrix)).ifPresent(p -> System.out.println(p.getNom() + " est la pizza la plus chère " + p.getPrix()+ "€ "));
 		
 		return false;
 	}

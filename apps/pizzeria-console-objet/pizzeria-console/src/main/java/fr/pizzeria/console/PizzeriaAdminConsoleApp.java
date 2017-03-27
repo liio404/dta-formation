@@ -8,6 +8,7 @@ public class PizzeriaAdminConsoleApp {
 	public static void main(String[] args) {
 		
 		IhmTools outils = new IhmTools();
+		// TODO : TP Test unitaires 
 		// TODO : TP Maven 02 CONSTRUCTION AUTOMATISEE DU MENU
 		MenuPrincipale principale = new MenuPrincipale(outils);
 		principale.executer();

@@ -5,11 +5,12 @@ import java.util.List;
 
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.exception.UpdatPizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoImpl implements IPizzaDao {
+public class PizzaDaoImpl implements IPizzaDao<Pizza, String> {
 	
 	List<Pizza> pizzas;
 
@@ -27,15 +28,15 @@ public class PizzaDaoImpl implements IPizzaDao {
 	}
 
 	@Override
-	public List<Pizza> findAllPizzas() {
+	public List<Pizza> findAll() {
 		return pizzas;
 	}
 
 	@Override
-	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException{
-		if(pizza.getCode().length() == 3){
+	public boolean save(Pizza obj) throws StockageException{
+		if(obj.getCode().length() == 3){
 			//Arrays.copyOf(pizzas, pizzas.length +1);
-			pizzas.add(pizza);
+			pizzas.add(obj);
 		}else{
 			throw new SavePizzaException("Le code de la pizza ne doit pas dépacer 3 caractère");
 		}
@@ -43,11 +44,11 @@ public class PizzaDaoImpl implements IPizzaDao {
 	}
 
 	@Override
-	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatPizzaException{
-		if(codePizza.length() == 3 || pizza.getCode().length() == 3){
+	public boolean update(String code, Pizza obj) throws StockageException{
+		if(code.length() == 3 || obj.getCode().length() == 3){
 			for (int i = 0; i < pizzas.size(); i++) {
-				if(pizzas.get(i).getCode().equals(codePizza)){
-					pizzas.set(i, pizza);
+				if(pizzas.get(i).getCode().equals(code)){
+					pizzas.set(i, obj);
 				}
 			}
 		}else {
@@ -58,10 +59,10 @@ public class PizzaDaoImpl implements IPizzaDao {
 	}
 
 	@Override
-	public boolean deletePizza(String codePizza) throws DeletePizzaException {
-		if(codePizza.length() == 3){
+	public boolean delete(String code) throws StockageException {
+		if(code.length() == 3){
 			for (int i = 0; i < pizzas.size(); i++) {
-				if(pizzas.get(i).getCode().equals(codePizza)){
+				if(pizzas.get(i).getCode().equals(code)){
 					pizzas.remove(i);
 				}
 			}
@@ -73,9 +74,9 @@ public class PizzaDaoImpl implements IPizzaDao {
 	}
 	
 	@Override
-	public Pizza findPizza(String codePizza) {
+	public Pizza find(String code) {
 		for (Pizza pizza : pizzas) {
-			if (pizza.getCode().equals(codePizza)) {
+			if (pizza.getCode().equals(code)) {
 				return pizza;
 			}
 		}

@@ -13,7 +13,7 @@ public class ListerPizzasCategorieOptionMenu extends OptionMenu {
 
 	@Override
 	public boolean excetute(IhmTools tools) {
-		tools.getDao().findAllPizzas().stream().collect(Collectors.groupingBy(Pizza::getCategorie))
+		tools.getDao().findAll().stream().collect(Collectors.groupingBy(Pizza::getCategorie))
 			.forEach((key, value) -> System.out.println(key + ":" + value));
 		
 		return false;
