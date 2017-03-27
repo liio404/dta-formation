@@ -1,5 +1,6 @@
 package fr.pizzeria.ihm;
 
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
@@ -10,19 +11,31 @@ import fr.pizzeria.model.Pizza;
 public class IhmTools {
 	
 	private final static Scanner SC = new Scanner(System.in);;
-	//private IPizzaDao dao = new PizzaDaoImpl();
-	private final static IPizzaDao<Pizza, String> DAO = new PizzaDaoImplFichier();
-
-	public Scanner getSc() {
-		return SC;
+	private IPizzaDao<Pizza, String> dao;
+	//private final static IPizzaDao<Pizza, String> DAO = new PizzaDaoImplFichier();
+	
+	public IhmTools(){
+		ResourceBundle bundle = ResourceBundle.getBundle("application");
+		String daoImpl = bundle.getString("dao.impl");
+		
+		try {
+			dao = (IPizzaDao<Pizza, String>) Class.forName(daoImpl).newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public IPizzaDao<Pizza, String> getDao() {
+		return this.dao;
 	}
 
-	public IPizzaDao<Pizza, String> getDao() {
-		return DAO;
+	public Scanner getSc() {
+		return this.SC;
 	}
 
 	public void close() {
-		SC.close();
+		this.SC.close();
 	}
 	
 }
