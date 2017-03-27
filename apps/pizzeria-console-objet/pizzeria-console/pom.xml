@@ -43,8 +43,8 @@
   			<activeByDefault>true</activeByDefault>
   		</activation>
   		<properties>
-  			<dao.impl>fr.pizzeria.dao.PizzaDaoImpl</dao.impl>
-  			<dao.fichier>fr.pizzeria.dao.PizzaDaoImplFichier</dao.fichier>
+  			<!-- changer la classe d'implémentation -->
+  			<dao.impl>fr.pizzeria.dao.PizzaDaoFichier</dao.impl>
   		</properties>
   	</profile>
   </profiles>

@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDaoImpl;
-import fr.pizzeria.dao.PizzaDaoImplFichier;
-import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 public class IhmTools {
@@ -17,12 +15,10 @@ public class IhmTools {
 	
 	public IhmTools(){
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
-		//String daoImpl = bundle.getString("dao.impl");
-		String daoFichier = bundle.getString("dao.fichier");
+		String daoImpl = bundle.getString("dao.impl");
 		
 		try {
-			//this.daoImpl = (IPizzaDao<Pizza, String>) Class.forName(daoImpl).newInstance();
-			this.daoImpl = (IPizzaDao<Pizza, String>) Class.forName(daoFichier).newInstance();
+			this.daoImpl = (IPizzaDao<Pizza, String>) Class.forName(daoImpl).newInstance();
 			
 			
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
