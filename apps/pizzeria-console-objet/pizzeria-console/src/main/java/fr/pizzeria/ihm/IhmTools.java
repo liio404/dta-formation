@@ -15,10 +15,10 @@ public class IhmTools {
 	
 	public IhmTools(){
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
-		String daoImpl = bundle.getString("dao.impl");
+		String impl = bundle.getString("dao.impl");
 		
 		try {
-			this.daoImpl = (IPizzaDao<Pizza, String>) Class.forName(daoImpl).newInstance();
+			this.daoImpl = (IPizzaDao<Pizza, String>) Class.forName(impl).newInstance();
 			
 			
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {

@@ -36,17 +36,4 @@
     </dependency>
   </dependencies>
   
-  <profiles>
-  	<profile>
-  		<id>dvp</id>
-  		<activation>
-  			<activeByDefault>true</activeByDefault>
-  		</activation>
-  		<properties>
-  			<!-- changer la classe d'implémentation -->
-  			<dao.impl>fr.pizzeria.dao.PizzaDaoFichier</dao.impl>
-  		</properties>
-  	</profile>
-  </profiles>
-  
 </project>
