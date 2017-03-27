@@ -5,7 +5,7 @@
   <parent>
     <groupId>dta</groupId>
     <artifactId>pizzeria-console-objet</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <relativePath>../</relativePath>
   </parent>
   
@@ -15,9 +15,46 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- implentation dao sans profils 
+    <dao.impl>fr.pizzeria.dao.PizzaDaoImplFichier</dao.impl>
+    -->
   </properties>
   
+  <profiles>
+  	<profile>
+  		<id>dev</id>
+  		<activation>
+  			<activeByDefault>true</activeByDefault>
+  		</activation>
+  		<properties>
+  			<name>dao.impl</name>
+  			<dao.impl>fr.pizzeria.dao.PizzaDaoImpl</dao.impl>
+  		</properties>
+  	</profile>
+  	<profile>
+  		<id>prod</id>
+  		<activation>
+  			<activeByDefault>false</activeByDefault>
+  		</activation>
+  		<properties>
+  			<name>dao.impl</name>
+  			<dao.impl>fr.pizzeria.dao.PizzaDaoImplFichier</dao.impl>
+  		</properties>
+  	</profile>
+  </profiles>
+  
+  <build>
+  	<resources>
+  		<resource>
+  			<directory>src/main/resources</directory>
+  			<filtering>true</filtering>
+  		</resource>
+  	</resources>
+  	
+  </build>
+  
   <dependencies>
+  
   	<dependency>
     	<groupId>${project.groupId}</groupId>
     	<artifactId>pizzeria-model</artifactId>
