@@ -13,9 +13,9 @@ public class ListerPizzasOptionMenu extends OptionMenu {
 
 	@Override
 	public boolean excetute(IhmTools tools) {
-		IPizzaDao pizzaDao = tools.getDao();
+		IPizzaDao<Pizza, String> pizzaDao = tools.getDao();
 		
-		for (Pizza pizza : pizzaDao.findAllPizzas()) {
+		for (Pizza pizza : pizzaDao.findAll()) {
 			System.out.println(pizza.toString());
 		}
 		

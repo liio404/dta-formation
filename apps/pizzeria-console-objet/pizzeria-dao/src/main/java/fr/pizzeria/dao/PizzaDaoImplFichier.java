@@ -16,15 +16,15 @@ import fr.pizzeria.exception.UpdatPizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoImplFichier implements IPizzaDao {
+public class PizzaDaoImplFichier implements IPizzaDao<Pizza, String> {
 
 	@Override
-	public Pizza findPizza(String codePizza) {
-		Path path = Paths.get("data", codePizza + ".txt");
+	public Pizza find(String code) {
+		Path path = Paths.get("data", code + ".txt");
 		try {
 			String[] pizzaIteration = Files.readAllLines(path).get(0).split(";");
-			String code = path.getFileName().toFile().getName().replaceFirst(".txt", "");
-			return new Pizza(code, pizzaIteration[0], Double.parseDouble(pizzaIteration[1]), CategoriePizza.valueOf(pizzaIteration[2]));
+			String codeP = path.getFileName().toFile().getName().replaceFirst(".txt", "");
+			return new Pizza(codeP, pizzaIteration[0], Double.parseDouble(pizzaIteration[1]), CategoriePizza.valueOf(pizzaIteration[2]));
 		} catch (IOException e) {
 			//throw new StockageException(e);
 			System.out.println(e.getMessage());
@@ -33,14 +33,14 @@ public class PizzaDaoImplFichier implements IPizzaDao {
 	}
 
 	@Override
-	public List<Pizza> findAllPizzas() {
+	public List<Pizza> findAll() {
 		try (Stream<Path> files = Files.list(Paths.get("data"))){
 			return files.map(path ->{
 				String[] pizzaIteration;
 				try {
 					pizzaIteration = Files.readAllLines(path).get(0).split(";");
-					String code = path.getFileName().toFile().getName().replaceFirst(".txt", "");
-					return new Pizza(code, pizzaIteration[0], Double.parseDouble(pizzaIteration[1]), CategoriePizza.valueOf(pizzaIteration[2]));
+					String codeP = path.getFileName().toFile().getName().replaceFirst(".txt", "");
+					return new Pizza(codeP, pizzaIteration[0], Double.parseDouble(pizzaIteration[1]), CategoriePizza.valueOf(pizzaIteration[2]));
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
 				}
@@ -54,9 +54,9 @@ public class PizzaDaoImplFichier implements IPizzaDao {
 	}
 
 	@Override
-	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException {
-		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("data", pizza.getCode() + ".txt"))){
-			writer.write(pizza.getNom() +";"+ pizza.getPrix() +";"+ pizza.getCategorie().toString());
+	public boolean save(Pizza obj) throws StockageException {
+		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("data", obj.getCode() + ".txt"))){
+			writer.write(obj.getNom() +";"+ obj.getPrix() +";"+ obj.getCategorie().toString());
 			
 		} catch (IOException e) {
 			throw new SavePizzaException(e);
@@ -65,10 +65,10 @@ public class PizzaDaoImplFichier implements IPizzaDao {
 	}
 
 	@Override
-	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatPizzaException {
+	public boolean update(String code, Pizza obj) throws StockageException {
 		try {
-			deletePizza(codePizza);
-			saveNewPizza(pizza);
+			delete(code);
+			save(obj);
 		} catch (StockageException e) {
 			throw new UpdatPizzaException(e);
 		}
@@ -76,9 +76,9 @@ public class PizzaDaoImplFichier implements IPizzaDao {
 	}
 
 	@Override
-	public boolean deletePizza(String codePizza) throws DeletePizzaException {
+	public boolean delete(String code) throws StockageException {
 		try {
-			Files.delete(Paths.get("data", codePizza + ".txt"));
+			Files.delete(Paths.get("data", code + ".txt"));
 		} catch (IOException e) {
 			throw new DeletePizzaException(e);
 		}

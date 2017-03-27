@@ -19,12 +19,12 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 	@Override
 	public boolean excetute(IhmTools tools) {
 		Scanner sc = tools.getSc();
-		IPizzaDao pizzaDao = tools.getDao();
+		IPizzaDao<Pizza, String> pizzaDao = tools.getDao();
 		
 		System.out.println("Veuillez saisir le code de la pizza a modifier");
 		String codePizza = sc.next();
 		//TODO : Ajouter la méthode findPizza dans IPizzaDao
-		Pizza pizza = pizzaDao.findPizza(codePizza);
+		Pizza pizza = pizzaDao.find(codePizza);
 		
 		System.out.println("Veuillez saisir le code");
 		pizza.setCode(sc.next());
@@ -40,7 +40,7 @@ public class ModifierPizzaOptionMenu extends OptionMenu {
 		pizza.setCategorie(CategoriePizza.valueOf(sc.next()));
 		
 		try {
-			pizzaDao.updatePizza(codePizza, pizza);
+			pizzaDao.update(codePizza, pizza);
 		} catch (StockageException e) {
 			new UpdatPizzaException("Impossible de modifier la pizza", e);
 		}

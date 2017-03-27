@@ -19,7 +19,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 	@Override
 	public boolean excetute(IhmTools tools) {
 		Scanner sc = tools.getSc();
-		IPizzaDao pizzaDao = tools.getDao();
+		IPizzaDao<Pizza, String> pizzaDao = tools.getDao();
 		Pizza pizza = new Pizza();
 		
 		System.out.println("Veuillez saisir le code de la nouvelle pizza");
@@ -36,7 +36,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		pizza.setCategorie(CategoriePizza.valueOf(sc.next()));
 		
 		try {
-			pizzaDao.saveNewPizza(pizza);
+			pizzaDao.save(pizza);
 		} catch (StockageException e) {
 			new SavePizzaException("Impossible d'ajouter la pizza", e);
 		}
