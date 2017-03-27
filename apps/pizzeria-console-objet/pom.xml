@@ -15,6 +15,7 @@
   	
   	<!-- plugins versions -->
 		<shade-plugin.version>3.0.0</shade-plugin.version>
+		<source-plugin.version>3.0.1</source-plugin.version>
   </properties>
   
   <build>
@@ -59,6 +60,17 @@
   					</goals>
   				</execution>
   			</executions>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-jar-plugin</artifactId>
+  			<configuration>
+  				<archive>
+  					<manifest>
+  						<mainClass>fr.pizzeria.console.PizzeriaAdminConsoleApp</mainClass>
+  					</manifest>
+  				</archive>
+  			</configuration>
   		</plugin>
   	</plugins>
   	
